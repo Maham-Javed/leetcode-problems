@@ -3,19 +3,28 @@
  */
 
 public class Reverse_of_a_Number {
-    public static void ReverseNumber(int n, int reverseNum){
+    public static int ReverseNumber(int n, int reverseNum){
+
         while(n > 0){
             int lastDigit = n % 10;
+            if(reverseNum > Integer.MAX_VALUE/10 || reverseNum < Integer.MIN_VALUE/10){
+                return 0;
+            }
             reverseNum = (reverseNum * 10) + lastDigit;
-            n = n/10;
+            if(reverseNum < 0){
+                    n = n/10 * -1;
+            }else{
+                n = n/10;
+            }
         }
-        System.out.println("Number of Digits: " + reverseNum);
+        return reverseNum;
     }
 
     public static void main(String[] args) {
-        int n = 10400;
+        int n = -123;
         int reverseNum = 0;
 
-        ReverseNumber(n, reverseNum);
+        int ans = ReverseNumber(n, reverseNum);
+        System.out.println(ans);
     }
 }
